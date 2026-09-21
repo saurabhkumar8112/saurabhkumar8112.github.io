@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://saurabhkumar8112.github.io/sitemap.xml

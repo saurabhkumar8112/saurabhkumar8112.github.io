@@ -1,0 +1,17 @@
+{
+  "name": "Saurabh Kumar",
+  "description": "Notes on AI, systems, and the decisions behind them.",
+  "base_url": "https://saurabhkumar8112.github.io",
+  "repository": "https://github.com/saurabhkumar8112/saurabhkumar8112.github.io",
+  "social_url": "https://x.com/drummatick",
+  "articles": [
+    {
+      "slug": "when-should-you-use-jev",
+      "title": "When should you use JEV? A practical guide",
+      "description": "Where a small decision model fits, what mistakes cost, and how to evaluate it across search, coding, agents, and other workflows.",
+      "date": "2026-09-22",
+      "category": "AI engineering",
+      "image": "assets/cover.png"
+    }
+  ]
+}

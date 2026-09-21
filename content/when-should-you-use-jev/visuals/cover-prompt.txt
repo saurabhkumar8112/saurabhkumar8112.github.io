@@ -1,0 +1,11 @@
+Use case: ads-marketing / editorial cover.
+Create a premium editorial illustration for a practical technical article titled "When should you use JEV?" This is an original publication cover, not a product advertisement.
+Wide landscape 2.5:1 composition, approximately 2400 x 960.
+Background very dark ink navy, restrained warm ivory typography, electric chartreuse and muted periwinkle accents. Sophisticated print-magazine art direction with elegant massive contemporary sans-serif type, crisp highly readable lettering, generous breathing room.
+Left 60 percent: exact title in three stacked lines:
+"When should"
+"you use JEV?"
+Below in smaller muted lavender type: "A practical guide"
+Right 40 percent: a beautiful abstract isometric illustration of several small decision tiles flowing along fine precise branching paths. One short path with a small chartreuse tile, another path rising through a larger ivory verification frame, and a final subtle amber stop tile. Visually suggest choosing a route and checking a decision before proceeding. No numeric charts, no rankings, no fabricated interface, no label text within the illustration.
+Keep the visual quiet, geometric and editorial, with subtle depth in the tiles, no glossy futuristic hype. Crisp mostly flat forms. The type is the protagonist. All text at least 8% from edges so cover cropping is forgiving.
+No vendor logo, robot, brain, dollar symbols, numerical saving claims, watermark or additional wording. Render the exact specified typography legibly.
