@@ -37,6 +37,10 @@ if OUT.exists():
     shutil.rmtree(OUT)
 OUT.mkdir()
 (OUT / '.nojekyll').touch()
+for verification in (ROOT / 'verification').glob('google*.html'):
+    assert re.fullmatch(r'google[a-f0-9]+\.html', verification.name)
+    assert verification.read_text().strip() == 'google-site-verification: '+verification.name
+    shutil.copyfile(verification, OUT / verification.name)
 
 CSS = '''
 :root{--ink:#101d33;--muted:#536075;--paper:#faf8f2;--line:#dedfdc;--accent:#dce978}

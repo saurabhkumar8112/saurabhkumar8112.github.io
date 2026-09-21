@@ -32,6 +32,8 @@ Original PNGs remain unchanged. Browser copies are compressed WebP images with r
 
 To verify Google Search Console, the build supports an optional `google_site_verification` field containing Google's public HTML-tag verification value. Add only a value actually issued for this site in the owner's Google account. Do not add credentials or OAuth tokens. Then verify ownership and submit `https://saurabhkumar8112.github.io/sitemap.xml` through Search Console. Publishing a sitemap by itself is not the same as submitting it in the owner's account.
 
+Google's downloaded HTML verification file is preserved in `verification/` and copied to the site root on every build. Keep the verification file and tag after ownership is verified. These are public ownership proofs, not sign-in credentials.
+
 ## Future domain
 
 The GitHub Pages address works now. To connect an owned domain later, verify and configure it in GitHub Pages, update `base_url` in `site.json`, and rebuild so canonical URLs, RSS, sitemap, and social images use the new address. Set the domain in GitHub Pages only after ownership and DNS are ready.
