@@ -4,7 +4,8 @@
   "base_url": "https://saurabhkumar8112.github.io",
   "repository": "https://github.com/saurabhkumar8112/saurabhkumar8112.github.io",
   "social_url": "https://x.com/drummatick",
-  "profile_updated": "2026-09-22",
+  "google_site_verification": "OOUJ38X9DPsrxyQqMpFGktQ5PYEhIa7VC7iHl-aCsmk",
+  "profile_updated": "2026-09-22T00:50:41+09:00",
   "articles": [
     {
       "slug": "when-should-you-use-jev",
@@ -13,6 +14,8 @@
       "description": "When should you use TypeSafe's Jev? A practical guide to AI agents, search and coding, covering accuracy, error cascades, confidence and workflow costs.",
       "date": "2026-09-22",
       "updated": "2026-09-22",
+      "published_at": "2026-09-22T00:20:44+09:00",
+      "updated_at": "2026-09-22T00:45:28+09:00",
       "category": "AI engineering",
       "image": "assets/cover.png"
     }

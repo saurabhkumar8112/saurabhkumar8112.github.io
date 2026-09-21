@@ -27,6 +27,11 @@ for post in POSTS:
     assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', post['slug']), 'Invalid slug'
     date.fromisoformat(post['date'])
     assert date.fromisoformat(post.get('updated',post['date'])) >= date.fromisoformat(post['date'])
+    for field, day in [('published_at','date'),('updated_at','updated')]:
+        timestamp=datetime.fromisoformat(post[field])
+        assert timestamp.utcoffset() is not None, f'{field} must include a timezone'
+        assert timestamp.date().isoformat()==post.get(day,post['date']), f'{field} must match {day}'
+    assert datetime.fromisoformat(post['updated_at']) >= datetime.fromisoformat(post['published_at'])
     assert (ROOT / 'content' / post['slug'] / post['image']).is_file()
 if OUT.exists():
     shutil.rmtree(OUT)
@@ -125,8 +130,8 @@ def metadata(title, description, path='/', image=None, article=None, noindex=Fal
             image_object.update(width=width,height=height)
             values.update({'og:image:width':str(width),'og:image:height':str(height),'og:image:type':'image/png'})
     if article:
-        values['article:published_time'] = article['date']
-        values['article:modified_time'] = article.get('updated',article['date'])
+        values['article:published_time'] = article['published_at']
+        values['article:modified_time'] = article['updated_at']
         values['article:author'] = BASE+'/about/'
     tags = ''.join(f'<meta {"name" if k.startswith("twitter:") else "property"}="{escape(k)}" content="{escape(v, quote=True)}">' for k, v in values.items())
     if not noindex:
@@ -139,7 +144,7 @@ def metadata(title, description, path='/', image=None, article=None, noindex=Fal
     if article:
         data = {'@type':'BlogPosting','@id':url+'#article','url':url,'headline':title,
                 'description':description,'datePublished':values['article:published_time'],
-                'dateModified':article.get('updated',article['date']),'inLanguage':'en',
+                'dateModified':values['article:modified_time'],'inLanguage':'en',
                 'articleSection':article['category'],'author':person(),'publisher':person(),
                 'isPartOf':{'@id':BASE+'/#website'},'mainEntityOfPage':{'@type':'WebPage','@id':url},
                 'image':image_object}
@@ -234,7 +239,7 @@ for tag,value in [('title',SITE['name']),('link',BASE+'/'),('description',SITE['
 for post in POSTS:
     item=ET.SubElement(channel,'item')
     url=BASE+'/articles/'+post['slug']+'/'
-    for tag,value in [('title',post['title']),('link',url),('guid',url),('description',post['description']),('pubDate',format_datetime(datetime.fromisoformat(post['date']+'T00:00:00+09:00')))]:
+    for tag,value in [('title',post['title']),('link',url),('guid',url),('description',post['description']),('pubDate',format_datetime(datetime.fromisoformat(post['published_at'])))]:
         ET.SubElement(item,tag).text=value
 ET.indent(rss)
 ET.ElementTree(rss).write(OUT/'feed.xml',encoding='utf-8',xml_declaration=True)

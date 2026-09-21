@@ -16,7 +16,7 @@ Technical articles on AI, systems, and engineering decisions.
 This repository is the home for an ongoing collection of articles. Each post has a stable `/articles/<slug>/` address. GitHub Pages serves `docs/` from the `main` branch.
 
 1. Add an article folder under `content/<slug>/`, following the first article's structure: Markdown, local images, a `build_article.py` renderer, and any companions. The current renderer supports the Markdown constructs used by this article, not arbitrary Markdown. Calculator companions are optional.
-2. Add its title, description, publication date, category, cover path, and slug to `site.json`.
+2. Add its title, description, publication date, category, cover path, and slug to `site.json`. Include `published_at` and `updated_at` as ISO 8601 timestamps with a timezone, matching the `date` and `updated` calendar dates.
 3. Run `python3 build_site.py`. The build uses the Python standard library and makes no external requests. It recreates only `docs/` and updates the article's generated reader and plain text.
 4. Review the article and the generated homepage, check links and sensitive content, then commit the source and `docs/` together. Pushing `main` triggers GitHub Pages publication.
 
@@ -24,7 +24,7 @@ The homepage, RSS feed, sitemap, social previews, and article metadata are gener
 
 ## Search and image metadata
 
-`site.json` is the source of truth for search descriptions, optional `seo_title` values, and publication dates. The article heading remains the visible editorial title. Set `updated` only when the article actually changes, never on every build. The author page uses the explicit `profile_updated` date.
+`site.json` is the source of truth for search descriptions, optional `seo_title` values, and publication dates. The article heading remains the visible editorial title. Set `updated` and `updated_at` only when the article actually changes, never on every build. The author page uses the explicit `profile_updated` timestamp. The first article's publication timestamp comes from its first successful Pages deployment, and its modification timestamp comes from the source revision. Metadata-only corrections do not reset these dates.
 
 The build creates self-canonical pages, an author profile, article and breadcrumb structured data, website identity, RSS, and a sitemap containing the homepage, profile, articles, and available calculators. The custom 404 page is marked `noindex`. Large search-image previews are permitted. Structured data and sitemaps make content understandable and discoverable; they do not guarantee indexing or ranking.
 
