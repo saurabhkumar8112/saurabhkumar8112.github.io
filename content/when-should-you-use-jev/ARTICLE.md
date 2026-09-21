@@ -8,7 +8,7 @@ A coding agent chooses the wrong recovery action after a failed database migrati
 
 Both decisions could be expressed as a single label. Their consequences are very different.
 
-That is the useful starting point for Jev. A cheaper decision is attractive when you make thousands of them. Whether you should automate that decision depends on what happens after it is wrong, how quickly you can notice, and what recovery costs.
+That is the useful starting point for Jev, TypeSafe's structured decision model. A cheaper decision is attractive when you make thousands of them. Whether you should automate that decision depends on what happens after it is wrong, how quickly you can notice, and what recovery costs.
 
 This guide walks through that choice for search, coding, agents, support, document processing, and other everyday workloads. The architectures are proposals to evaluate. The numerical examples are hypothetical, not measurements of Jev.
 
@@ -172,6 +172,8 @@ For a planning example, invent three prices: the original model costs $4 per 1,0
 | 70% | $4.28 | 7% higher |
 
 The first stage stays cheap in every row. The total saving does not.
+
+You can change these hypothetical prices and fallback rates in the [cascade cost calculator](calculator.html).
 
 ![Hypothetical cascade economics: a fixed $0.08 decision-stage cost plus $6 times the escalation fraction, compared with a $4 baseline, all per 1,000 incoming requests. Break-even is about 65.3% escalation before operating costs.](assets/cascade-economics.png)
 

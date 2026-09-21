@@ -1,15 +1,18 @@
 {
   "name": "Saurabh Kumar",
-  "description": "Notes on AI, systems, and the decisions behind them.",
+  "description": "Technical articles by Saurabh Kumar on AI agents, model evaluation, reliability, and cost, with practical guides, diagrams, and reproducible code.",
   "base_url": "https://saurabhkumar8112.github.io",
   "repository": "https://github.com/saurabhkumar8112/saurabhkumar8112.github.io",
   "social_url": "https://x.com/drummatick",
+  "profile_updated": "2026-09-22",
   "articles": [
     {
       "slug": "when-should-you-use-jev",
       "title": "When should you use JEV? A practical guide",
-      "description": "Where a small decision model fits, what mistakes cost, and how to evaluate it across search, coding, agents, and other workflows.",
+      "seo_title": "When to Use Jev: Agents, Search & Coding | Saurabh Kumar",
+      "description": "When should you use TypeSafe's Jev? A practical guide to AI agents, search and coding, covering accuracy, error cascades, confidence and workflow costs.",
       "date": "2026-09-22",
+      "updated": "2026-09-22",
       "category": "AI engineering",
       "image": "assets/cover.png"
     }

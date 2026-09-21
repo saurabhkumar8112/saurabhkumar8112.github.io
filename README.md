@@ -22,6 +22,16 @@ This repository is the home for an ongoing collection of articles. Each post has
 
 The homepage, RSS feed, sitemap, social previews, and article metadata are generated from `site.json`. No external fonts, analytics scripts, or JavaScript framework are required. Only local calculator arithmetic and the article copy button use JavaScript. The site contains no forms or application backend.
 
+## Search and image metadata
+
+`site.json` is the source of truth for search descriptions, optional `seo_title` values, and publication dates. The article heading remains the visible editorial title. Set `updated` only when the article actually changes, never on every build. The author page uses the explicit `profile_updated` date.
+
+The build creates self-canonical pages, an author profile, article and breadcrumb structured data, website identity, RSS, and a sitemap containing the homepage, profile, articles, and available calculators. The custom 404 page is marked `noindex`. Large search-image previews are permitted. Structured data and sitemaps make content understandable and discoverable; they do not guarantee indexing or ranking.
+
+Original PNGs remain unchanged. Browser copies are compressed WebP images with responsive sizes, intrinsic dimensions, and lazy loading for body figures. Run `python3 optimize_images.py` after changing PNGs; this optional step requires `cwebp`. Commit the resulting derivatives, then run the standard-library site build. Social previews retain the original full-resolution PNG.
+
+To verify Google Search Console, the build supports an optional `google_site_verification` field containing Google's public HTML-tag verification value. Add only a value actually issued for this site in the owner's Google account. Do not add credentials or OAuth tokens. Then verify ownership and submit `https://saurabhkumar8112.github.io/sitemap.xml` through Search Console. Publishing a sitemap by itself is not the same as submitting it in the owner's account.
+
 ## Future domain
 
 The GitHub Pages address works now. To connect an owned domain later, verify and configure it in GitHub Pages, update `base_url` in `site.json`, and rebuild so canonical URLs, RSS, sitemap, and social images use the new address. Set the domain in GitHub Pages only after ownership and DNS are ready.

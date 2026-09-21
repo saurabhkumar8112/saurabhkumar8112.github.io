@@ -8,7 +8,7 @@ A coding agent chooses the wrong recovery action after a failed database migrati
 
 Both decisions could be expressed as a single label. Their consequences are very different.
 
-That is the useful starting point for Jev. A cheaper decision is attractive when you make thousands of them. Whether you should automate that decision depends on what happens after it is wrong, how quickly you can notice, and what recovery costs.
+That is the useful starting point for Jev, TypeSafe's structured decision model. A cheaper decision is attractive when you make thousands of them. Whether you should automate that decision depends on what happens after it is wrong, how quickly you can notice, and what recovery costs.
 
 This guide walks through that choice for search, coding, agents, support, document processing, and other everyday workloads. The architectures are proposals to evaluate. The numerical examples are hypothetical, not measurements of Jev.
 
@@ -209,6 +209,8 @@ Cascade API cost per 1,000 incoming requests: $4.28
 Change versus the $4 baseline: 7% higher
 
 The first stage stays cheap in every row. The total saving does not.
+
+You can change these hypothetical prices and fallback rates in the cascade cost calculator.
 
 For the product decision, go beyond the token bill. Include verification, retrieval, retries, human review and the operating work of maintaining the additional path. For agents, compare total spend divided by successfully completed tasks, and report completion rate and serious failures beside it. A low cost per success does not excuse abandoning an unacceptable share of tasks.
 

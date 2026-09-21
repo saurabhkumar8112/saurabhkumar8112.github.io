@@ -3,13 +3,13 @@
   <channel>
     <title>Saurabh Kumar</title>
     <link>https://saurabhkumar8112.github.io/</link>
-    <description>Notes on AI, systems, and the decisions behind them.</description>
+    <description>Technical articles by Saurabh Kumar on AI agents, model evaluation, reliability, and cost, with practical guides, diagrams, and reproducible code.</description>
     <language>en</language>
     <item>
       <title>When should you use JEV? A practical guide</title>
       <link>https://saurabhkumar8112.github.io/articles/when-should-you-use-jev/</link>
       <guid>https://saurabhkumar8112.github.io/articles/when-should-you-use-jev/</guid>
-      <description>Where a small decision model fits, what mistakes cost, and how to evaluate it across search, coding, agents, and other workflows.</description>
+      <description>When should you use TypeSafe's Jev? A practical guide to AI agents, search and coding, covering accuracy, error cascades, confidence and workflow costs.</description>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0900</pubDate>
     </item>
   </channel>
