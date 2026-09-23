@@ -81,3 +81,7 @@ Primary transcripts checked September 23, 2026:
 - [TCS quarterly release](https://www.tcs.com/who-we-are/newsroom/press-release/tcs-financial-results-q1-fy-2027). Annualized revenue is a run rate.
 
 Editorial change: outcome pricing is already present. The proposal concerns verifiable commitments, not invention of a commercial model. The contract-mechanics table is analysis, not reported revenue segmentation. No causal attribution of company margins or staffing to AI alone. No comparable company-wide autonomous delivery metric established by these sources.
+
+## Cover provenance
+
+The original typographic cover was rendered with Pillow using local Helvetica typography on a navy background. It contains no company logos or third-party imagery.
