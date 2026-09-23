@@ -6,6 +6,11 @@ Technical articles on AI, systems, and engineering decisions.
 
 ## Articles
 
+- [When AI Does the Work, What Will Infosys and TCS Sell?](https://saurabhkumar8112.github.io/articles/future-of-it-services/)
+  - [Article source](content/future-of-it-services/ARTICLE.md)
+  - [Evaluation protocol](content/future-of-it-services/TECHNICAL_PROTOCOL.md)
+  - [Sources](content/future-of-it-services/SOURCES.md)
+
 - [When should you use JEV? A practical guide](https://saurabhkumar8112.github.io/articles/when-should-you-use-jev/) · September 22, 2026
   - [Article source](content/when-should-you-use-jev/ARTICLE.md)
   - [Optional code examples](content/when-should-you-use-jev/code/README.md)

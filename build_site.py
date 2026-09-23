@@ -212,6 +212,8 @@ for post in POSTS:
     breadcrumb='<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">'+escape(post['title'])+'</li></ol></nav>'
     html = html.replace('<article>',breadcrumb+'<article>',1)
     note = '<p class="publication-note">Writing and illustrations prepared with AI assistance. The cover is AI-generated; the diagrams are generated from code. See the <a href="SOURCES.md">sources and illustration notes</a>.</p>'
+    if post.get('illustration_note'):
+        note = '<p class="publication-note">'+escape(post['illustration_note'])+' <a href="SOURCES.md">Sources</a>.</p>'
     html = html.replace('</article>',note+'</article>',1).replace('</body>',footer()+'</body>')
     html = public_links(html,slug)
     html = optimize_html_images(html,source)
