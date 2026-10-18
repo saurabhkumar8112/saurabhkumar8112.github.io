@@ -8,6 +8,19 @@
   "profile_updated": "2026-09-22T00:50:41+09:00",
   "articles": [
     {
+      "slug": "everything-can-be-automated",
+      "title": "Everything Can Be Automated with AI. Why Bother Then?",
+      "seo_title": "Everything Can Be Automated with AI. Why Bother? | Saurabh Kumar",
+      "description": "AI multiplies a system. Without one, it multiplies variance. An interactive essay on reels, assembly lines and why judgment is the new bottleneck.",
+      "date": "2026-10-19",
+      "updated": "2026-10-19",
+      "published_at": "2026-10-19T12:00:00+09:00",
+      "updated_at": "2026-10-19T12:00:00+09:00",
+      "category": "AI & work",
+      "image": "assets/cover.png",
+      "illustration_note": "Writing prepared with AI assistance. The cover, illustrations, memes and interactive demos are original and drawn from code. The demos are illustrative, not measurements."
+    },
+    {
       "slug": "when-should-you-use-jev",
       "title": "When should you use JEV? A practical guide",
       "seo_title": "When to Use Jev: Agents, Search & Coding | Saurabh Kumar",

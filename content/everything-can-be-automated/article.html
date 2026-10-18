@@ -1,0 +1,407 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Everything can be automated with AI, so why bother? Automation multiplies a system; without one it multiplies variance."><meta name="author" content="Saurabh Kumar"><title>Everything Can Be Automated with AI. Why Bother Then? | Saurabh Kumar</title><style>
+/* Article page: interactive essay. Tokens prefixed --w- so the site stylesheet cannot override them. */
+/* Layout: a single reading column laid out like an editing timeline; interactive "clips" break the column at key beats. */
+:root{
+  --w-bg:#faf8f2; --w-paper:#fffefa; --w-ink:#101d33; --w-muted:#536075; --w-line:#dedfdc;
+  --w-rec:#d8432c; --w-rec-soft:#fbe3dd; --w-tape:#e9c46a; --w-ok:#2f8a5b; --w-ok-soft:#dcefe3;
+  --w-track1:#7aa2d6; --w-track2:#c88ad6; --w-track3:#e9a35a;
+  --w-display:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --w-body:Georgia,"Times New Roman",serif;
+  --w-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+main.ea{display:block;padding:0 max(20px,env(safe-area-inset-left,0px)) 64px;font-family:var(--w-body);font-size:1.13rem;line-height:1.65;color:var(--w-ink)}
+main.ea .breadcrumbs{max-width:900px;margin:22px auto 0}
+.col{max-width:680px;margin:0 auto}
+.wide{max-width:900px;margin:0 auto}
+p{margin:0 0 1.1em}
+.ea h1,.ea h2{font-family:var(--w-display);letter-spacing:-.045em;line-height:1.02;text-wrap:balance;margin:0}
+.ea h1{font-size:clamp(2.5rem,8vw,4.6rem);font-weight:800}
+.ea h2{font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:750;margin:2em 0 .6em}
+.tc{font-family:var(--w-mono);font-size:.74rem;color:var(--w-muted);letter-spacing:.04em}
+.label{font-family:var(--w-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--w-muted)}
+em{font-style:italic}
+strong{font-weight:600}
+.big{font-family:var(--w-display);font-weight:800;font-size:clamp(1.6rem,4.5vw,2.2rem);line-height:1.05;letter-spacing:-.03em;margin:1.2em 0;text-wrap:balance}
+.big .r{color:var(--w-rec)}
+
+/* Hero timeline */
+.ea-hero{padding-block:40px 8px}
+.rec{display:inline-flex;align-items:center;gap:8px;font-family:var(--w-mono);font-size:.75rem;color:var(--w-rec);letter-spacing:.1em}
+.rec i{width:10px;height:10px;border-radius:50%;background:var(--w-rec);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero-sub{font-size:1.25rem;color:var(--w-muted);margin:18px 0 26px;max-width:36ch}
+.timeline{background:var(--w-paper);border:1px solid var(--w-line);border-radius:6px;padding:12px;position:relative;overflow:hidden}
+.ruler{display:flex;justify-content:space-between;font-family:var(--w-mono);font-size:.65rem;color:var(--w-muted);padding:0 2px 6px;border-bottom:1px dashed var(--w-line);margin-bottom:8px}
+.track{display:flex;gap:3px;height:22px;margin-bottom:4px}
+.clip{border-radius:3px;font-family:var(--w-mono);font-size:.6rem;color:#fff;padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.playhead{position:absolute;top:8px;bottom:8px;width:2px;background:var(--w-rec);left:12%;animation:scrub 9s ease-in-out infinite alternate}
+.playhead::before{content:"";position:absolute;top:-2px;left:-5px;border:6px solid transparent;border-top-color:var(--w-rec)}
+@keyframes scrub{to{left:88%}}
+
+/* Version file list meme */
+.files{background:var(--w-paper);border:1px solid var(--w-line);border-radius:6px;font-family:var(--w-mono);font-size:.82rem;margin:1.6em 0;overflow:hidden}
+.files .bar{display:flex;gap:6px;padding:8px 12px;border-bottom:1px solid var(--w-line)}
+.files .bar b{width:10px;height:10px;border-radius:50%;background:var(--w-line)}
+.files ul{list-style:none;margin:0;padding:6px 0}
+.files li{display:flex;justify-content:space-between;gap:12px;padding:5px 14px}
+.files li span:first-child{min-width:0;overflow-wrap:anywhere}
+.files li .t{color:var(--w-muted);flex-shrink:0}
+.files li:last-child{background:var(--w-rec-soft);color:var(--w-rec);font-weight:600}
+.files .cap{padding:8px 14px 12px;color:var(--w-muted);font-size:.75rem;border-top:1px dashed var(--w-line)}
+
+/* Generic meme panel */
+.meme{margin:2em 0;border:2px solid var(--w-ink);border-radius:4px;background:var(--w-paper);overflow:hidden}
+.meme .grid2{display:grid;grid-template-columns:1fr 1fr}
+.meme .panel{padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;min-width:0}
+.meme .panel+.panel{border-left:2px solid var(--w-ink)}
+.meme .ttl{font-family:var(--w-display);font-weight:900;font-size:1.4rem;text-transform:uppercase;line-height:1}
+.meme .txt{font-family:var(--w-mono);font-size:.78rem;line-height:1.45}
+.meme svg{width:100%;max-width:220px;height:auto}
+.meme .credit{font-family:var(--w-mono);font-size:.65rem;color:var(--w-muted);text-align:right;padding:4px 10px;border-top:1px solid var(--w-line)}
+
+/* Brain ladder */
+.ladder{display:grid;gap:0;margin:2em 0;border:2px solid var(--w-ink);border-radius:4px;overflow:hidden;background:var(--w-paper)}
+.rung{display:grid;grid-template-columns:1fr 92px;align-items:center;border-top:2px solid var(--w-ink)}
+.rung:first-child{border-top:0}
+.rung p{margin:0;padding:12px 16px;font-family:var(--w-mono);font-size:.85rem;min-width:0}
+.rung .glow{height:100%;min-height:70px;display:flex;align-items:center;justify-content:center;border-left:2px solid var(--w-ink)}
+
+/* Variance machine */
+.machine{background:var(--w-paper);border:1px solid var(--w-line);border-radius:8px;padding:20px;margin:2.2em 0}
+.machine h3{font-family:var(--w-display);font-weight:800;font-size:1.5rem;text-transform:uppercase;margin:0 0 4px}
+.machine .hint{font-size:.95rem;color:var(--w-muted);margin:0 0 14px}
+.prompt{font-family:var(--w-mono);font-size:.85rem;background:var(--w-bg);border:1px solid var(--w-line);border-radius:4px;padding:10px 12px;margin-bottom:12px;overflow-wrap:anywhere}
+.prompt .cursor{display:inline-block;width:7px;height:1em;background:var(--w-ink);vertical-align:-2px;animation:blink 1s infinite}
+.rules{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.rules label{display:inline-flex;align-items:center;gap:6px;font-family:var(--w-mono);font-size:.76rem;border:1px solid var(--w-line);border-radius:999px;padding:6px 11px;cursor:pointer;user-select:none;background:var(--w-bg)}
+.rules input{accent-color:var(--w-ok);margin:0}
+.rules label:has(input:checked){border-color:var(--w-ok);background:var(--w-ok-soft)}
+.btn{font-family:var(--w-display);font-weight:800;text-transform:uppercase;font-size:1.05rem;letter-spacing:.04em;border:2px solid var(--w-ink);background:var(--w-ink);color:var(--w-paper);padding:9px 18px;border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--w-ink)}
+.btn:focus-visible,.rules label:focus-within,.opt:focus-visible{outline:3px solid var(--w-rec);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.outs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.out{border:1px solid var(--w-line);border-radius:6px;overflow:hidden;background:var(--w-bg);font-family:var(--w-mono);font-size:.7rem}
+.out .frame{aspect-ratio:9/12;max-width:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding:8px}
+.out .meta{padding:6px 8px;border-top:1px solid var(--w-line);display:flex;justify-content:space-between;gap:6px}
+.out.pass .meta b{color:var(--w-ok)} .out.fail .meta b{color:var(--w-rec)}
+.stats{display:flex;flex-wrap:wrap;gap:22px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--w-line)}
+.stat .n{font-family:var(--w-display);font-weight:900;font-size:2.1rem;line-height:1;font-variant-numeric:tabular-nums}
+.meter{height:10px;background:var(--w-bg);border:1px solid var(--w-line);border-radius:999px;overflow:hidden;margin-top:6px;width:160px;max-width:100%}
+.meter i{display:block;height:100%;background:var(--w-rec);transition:width .5s,background .5s}
+
+/* Ford line */
+.ford{background:var(--w-paper);border:1px solid var(--w-line);border-radius:8px;padding:16px;margin:2em 0}
+.ford svg{width:100%;height:auto;display:block}
+.ford .row{justify-content:space-between;margin-top:10px}
+
+/* Checklist */
+.check{background:var(--w-paper);border:2px solid var(--w-ink);border-radius:6px;padding:20px;margin:2.2em 0}
+.check h3{font-family:var(--w-display);font-weight:800;font-size:1.5rem;text-transform:uppercase;margin:0 0 12px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--w-line);cursor:pointer}
+.opt input{margin-top:6px;width:18px;height:18px;accent-color:var(--w-ok);flex-shrink:0}
+.opt span{font-size:1rem}
+.verdict{margin-top:14px;padding:12px 14px;border-radius:4px;background:var(--w-rec-soft);font-family:var(--w-mono);font-size:.85rem;transition:background .3s}
+.verdict.good{background:var(--w-ok-soft)}
+
+.end{font-family:var(--w-display);font-weight:800;letter-spacing:-.04em;font-size:clamp(1.9rem,5.5vw,2.8rem);line-height:1;margin:1.4em 0 .4em;text-wrap:balance}
+.ea-end{margin-top:3em;padding-top:1em;border-top:1px solid var(--w-line)}
+
+@media (max-width:520px){
+  .meme .grid2{grid-template-columns:1fr}
+  .meme .panel+.panel{border-left:0;border-top:2px solid var(--w-ink)}
+  .rung{grid-template-columns:1fr 70px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.byline{font-family:var(--w-mono);font-size:.82rem;color:var(--w-muted);margin:-10px 0 24px}
+#copy-dialog textarea{width:min(640px,80vw);height:50vh}</style></head><body><header><nav><span class="brand">Saurabh Kumar</span><div class="controls"><button id="copy">Copy article text</button></div></nav><div id="status" class="status" role="status" aria-live="polite"></div></header><main class="ea"><article>
+
+<div class="wide ea-hero">
+  <div class="rec"><i></i>REC 00:00:00:01</div>
+  <h1 style="margin-top:14px">Everything can be automated with AI.<br><span style="color:var(--w-rec)">Why bother then?</span></h1>
+  <p class="hero-sub">A note on reels, assembly lines, and the thing AI cannot do for you.</p>
+  <p class="byline">By Saurabh Kumar · <a href="https://x.com/drummatick">@drummatick</a></p>
+  <div class="timeline" aria-hidden="true">
+    <div class="ruler"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span><span>00:20</span><span>00:25</span><span>00:30</span></div>
+    <div class="track"><div class="clip" style="background:var(--w-track1);flex:2">intro_v1</div><div class="clip" style="background:var(--w-track1);flex:1.3">intro_v2??</div><div class="clip" style="background:var(--w-track1);flex:3">broll_redo</div><div class="clip" style="background:var(--w-track1);flex:1">cut</div></div>
+    <div class="track"><div class="clip" style="background:var(--w-track2);flex:1">text</div><div class="clip" style="background:var(--w-track2);flex:2.4">bigger text pls</div><div class="clip" style="background:var(--w-track2);flex:1.5">infographic?</div><div class="clip" style="background:var(--w-track2);flex:1">.</div></div>
+    <div class="track"><div class="clip" style="background:var(--w-track3);flex:3.5">viral_audio_maybe.mp3</div><div class="clip" style="background:var(--w-track3);flex:1">sfx</div><div class="clip" style="background:var(--w-track3);flex:2">whoosh_x14</div></div>
+    <div class="playhead"></div>
+  </div>
+</div>
+
+<div class="col">
+  <p style="margin-top:2em">Last week I tried to edit an Instagram reel with AI.</p>
+  <p>I am a software engineer. I have shipped products. I assumed this would take twenty minutes.</p>
+  <p>It took most of an evening.</p>
+  <p>Version 1 came back and it was fine. Not good. Fine. So I asked for faster cuts. Version 2 had faster cuts and worse text. Version 3 fixed the text and lost the rhythm. Somewhere around version 6 I realized I wasn't editing a video anymore. I was negotiating with one.</p>
+
+  <div class="files" role="figure" aria-label="A folder of reel drafts with ever longer filenames">
+    <div class="bar"><b></b><b></b><b></b></div>
+    <ul>
+      <li><span>reel_v1.mp4</span><span class="t">7:42 PM</span></li>
+      <li><span>reel_v2_faster.mp4</span><span class="t">7:58 PM</span></li>
+      <li><span>reel_v3_text_fixed.mp4</span><span class="t">8:21 PM</span></li>
+      <li><span>reel_v4_back_to_v2_rhythm.mp4</span><span class="t">8:47 PM</span></li>
+      <li><span>reel_v5_FINAL.mp4</span><span class="t">9:30 PM</span></li>
+      <li><span>reel_v6_FINAL_final_actually_this_one.mp4</span><span class="t">10:12 PM</span></li>
+    </ul>
+    <div class="cap">Exhibit A. Every file here is "what I asked for."</div>
+  </div>
+
+  <p>The AI wasn't the problem. It did exactly what I asked. The problem was that I didn't know what to ask.</p>
+
+  <h2>We have been automating for 200 years</h2>
+  <p>None of this is new. In 1801 the Jacquard loom automated weaving patterns with punch cards. In 1913 Ford's moving assembly line cut the time to build a Model T from about twelve hours to around ninety minutes.</p>
+  <p>But notice what Ford actually automated. Not "build a car." He automated a car that had already been designed, broken into steps, and specified down to the bolt. The line was fast because the system was clear.</p>
+
+  <div class="ford">
+    <div class="label" style="margin-bottom:8px">Try it: run the line</div>
+    <svg viewBox="0 0 640 170" role="img" aria-label="An assembly line with five stations. With a spec, the same car comes out every time. Without one, every car is different.">
+      <rect x="0" y="118" width="640" height="10" fill="var(--w-line)"/>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="var(--w-muted)" text-anchor="middle">
+        <g id="stations"></g>
+      </g>
+      <g id="cars"></g>
+    </svg>
+    <div class="row">
+      <div class="row">
+        <button class="btn" id="fordSpec" type="button">Run with a spec</button>
+        <button class="btn ghost" id="fordWish" type="button">Run with a wish</button>
+      </div>
+      <span class="tc" id="fordNote">Five stations. Press a button.</span>
+    </div>
+  </div>
+
+  <p>Automation has always worked this way. It multiplies a system. It does not invent one.</p>
+  <p>AI feels different because you can type a wish in plain English and get something back. That makes it easy to forget the old rule still applies.</p>
+  <p class="big">Give it a system and it multiplies the system. <span class="r">Give it a wish and it multiplies the variance.</span></p>
+
+  <h2>Why it works when I write code</h2>
+  <p>When I build software with AI, I rarely get the evening I had with that reel.</p>
+  <p>Why? Because I already know what the finished thing looks like. I know the constraints. I know the steps to get there. I know what's in scope and what isn't. When the AI produces something, I can tell in seconds whether it's right, and if it isn't, I can say exactly why.</p>
+  <p>That's a system. It lives in my head, built over years of doing the work badly and then less badly.</p>
+
+  <div class="meme" role="figure" aria-label="Two panel meme comparing the author at code versus at video editing">
+    <div class="grid2">
+      <div class="panel">
+        <div class="ttl">Me, writing code</div>
+        <svg viewBox="0 0 200 150" aria-hidden="true">
+          <rect x="20" y="20" width="160" height="100" rx="6" fill="var(--w-bg)" stroke="var(--w-ink)" stroke-width="3"/>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--w-ok)">
+            <text x="32" y="44">✓ spec</text><text x="32" y="62">✓ constraints</text><text x="32" y="80">✓ steps</text><text x="32" y="98">✓ scope</text>
+          </g>
+          <circle cx="150" cy="70" r="18" fill="var(--w-tape)" stroke="var(--w-ink)" stroke-width="3"/>
+          <rect x="136" y="64" width="12" height="5" rx="1" fill="var(--w-ink)"/><rect x="152" y="64" width="12" height="5" rx="1" fill="var(--w-ink)"/>
+          <line x1="148" y1="66" x2="152" y2="66" stroke="var(--w-ink)" stroke-width="2"/>
+          <path d="M141 77 q9 7 18 0" fill="none" stroke="var(--w-ink)" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="80" y="125" width="40" height="8" fill="var(--w-ink)"/>
+        </svg>
+        <div class="txt">"Refactor the auth module.<br>Keep the API stable."<br><b>Shipped. v1.</b></div>
+      </div>
+      <div class="panel">
+        <div class="ttl" style="color:var(--w-rec)">Me, editing a reel</div>
+        <svg viewBox="0 0 200 150" aria-hidden="true">
+          <rect x="20" y="20" width="160" height="100" rx="6" fill="var(--w-bg)" stroke="var(--w-ink)" stroke-width="3"/>
+          <g font-family="JetBrains Mono, monospace" font-size="20" fill="var(--w-rec)" font-weight="600">
+            <text x="34" y="60">?</text><text x="60" y="92">?</text><text x="92" y="52">?</text><text x="44" y="108">?</text>
+          </g>
+          <circle cx="150" cy="70" r="18" fill="var(--w-tape)" stroke="var(--w-ink)" stroke-width="3"/>
+          <circle cx="143" cy="66" r="3" fill="var(--w-ink)"/><circle cx="157" cy="66" r="3" fill="var(--w-ink)"/>
+          <path d="M141 81 q4 -4 9 0 q5 4 9 0" fill="none" stroke="var(--w-ink)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M168 50 q4 -8 0 -14" fill="none" stroke="var(--w-track1)" stroke-width="3" stroke-linecap="round"/>
+          <rect x="80" y="125" width="40" height="8" fill="var(--w-ink)"/>
+        </svg>
+        <div class="txt">"Make it viral.<br>Add good animation I guess."<br><b>v1, v2, v3, v4, v5, v6...</b></div>
+      </div>
+    </div>
+    <div class="credit">same human, same AI, different system</div>
+  </div>
+
+  <p>With video I had none of that. I knew I wanted it "edited." I wanted "some infographics" and "good animation." I wanted it to go viral.</p>
+  <p>But what is a viral video? How long is it? What happens in the first two seconds? Where do the cuts land? What does the viewer feel at second 8?</p>
+  <p>I didn't know. So I asked the AI to decide, and it decided differently every time. Each version was a guess. My feedback was a guess too, because I was reacting to what I saw rather than steering toward something I understood.</p>
+  <p>That's the loop. Vague intent, random output, vague feedback, repeat. Each round costs a context switch and a little more patience.</p>
+
+  <h2>Variance is the symptom</h2>
+  <p>The frustration of working with AI in an unfamiliar domain isn't a tooling problem. It's a knowledge problem wearing a tooling costume.</p>
+  <p>"Make me a viral video" is not a spec. It's a hope.</p>
+
+  <section class="machine" aria-labelledby="mh">
+    <h3 id="mh">The variance machine</h3>
+    <p class="hint">Generate six reels from the same prompt. Then tick a few rules, the way an editor would, and generate again. Watch what happens to the spread.</p>
+    <div class="prompt">&gt; <span id="promptText">make me a viral reel</span><span class="cursor"></span></div>
+    <div class="rules" id="rules">
+      <label><input type="checkbox" id="r-hook" value="hook"> hook in first 1s</label>
+      <label><input type="checkbox" id="r-len" value="len"> under 30s</label>
+      <label><input type="checkbox" id="r-cap" value="cap"> big captions, works on mute</label>
+      <label><input type="checkbox" id="r-one" value="one"> one idea per cut</label>
+      <label><input type="checkbox" id="r-ref" value="ref"> match a reference reel</label>
+    </div>
+    <div class="row">
+      <button class="btn" id="gen" type="button">Generate 6 reels</button>
+      <span class="tc" id="genNote"></span>
+    </div>
+    <div class="outs" id="outs"></div>
+    <div class="stats">
+      <div class="stat"><div class="label">Usable on first try</div><div class="n" id="sUse">0/6</div></div>
+      <div class="stat"><div class="label">Variance</div><div class="meter"><i id="sVar" style="width:100%"></i></div></div>
+      <div class="stat"><div class="label">Est. evening lost</div><div class="n" id="sTime">3h</div></div>
+    </div>
+  </section>
+
+  <p>An expert editor would turn that hope into decisions before touching anything. A hook in the first second. Under 30 seconds. One idea per cut. Captions large enough to read on mute. A reference reel to match. Those decisions are the system, and once they exist, the AI can execute them almost perfectly on the first try.</p>
+  <p class="big">The gap between version 1 and version 6 is exactly the size of the system you don't have.</p>
+
+  <h2>It's the same for growing an audience</h2>
+  <p>This goes well beyond editing. People ask AI to grow their Twitter or Instagram and get a pile of posts that sound like everyone else's.</p>
+
+  <div class="ladder" role="figure" aria-label="Four levels of asking AI to grow an account, from least to most effective">
+    <div class="rung"><p>"Grow my account."</p><div class="glow" style="background:var(--w-bg)"><svg width="40" height="34" viewBox="0 0 40 34" aria-hidden="true"><ellipse cx="20" cy="17" rx="10" ry="8" fill="var(--w-line)" stroke="var(--w-ink)" stroke-width="2"/></svg></div></div>
+    <div class="rung"><p>"Write 30 viral tweets about AI."</p><div class="glow" style="background:color-mix(in srgb,var(--w-tape) 30%,var(--w-paper))"><svg width="46" height="38" viewBox="0 0 46 38" aria-hidden="true"><ellipse cx="23" cy="19" rx="14" ry="11" fill="var(--w-tape)" stroke="var(--w-ink)" stroke-width="2"/></svg></div></div>
+    <div class="rung"><p>"Write for early stage founders who doubt AI. One idea per post. Three a week. Track replies."</p><div class="glow" style="background:color-mix(in srgb,var(--w-tape) 60%,var(--w-paper))"><svg width="54" height="44" viewBox="0 0 54 44" aria-hidden="true"><ellipse cx="27" cy="22" rx="18" ry="14" fill="var(--w-tape)" stroke="var(--w-ink)" stroke-width="2"/><path d="M14 22 q6-8 13 0 q7 8 13 0" fill="none" stroke="var(--w-ink)" stroke-width="2"/></svg></div></div>
+    <div class="rung"><p>Spend a week studying the audience. Write the system down. <em>Then</em> prompt.</p><div class="glow" style="background:var(--w-tape)"><svg width="64" height="54" viewBox="0 0 64 54" aria-hidden="true"><g stroke="var(--w-ink)" stroke-width="2"><line x1="32" y1="2" x2="32" y2="8"/><line x1="6" y1="27" x2="0" y2="27"/><line x1="58" y1="27" x2="64" y2="27"/><line x1="12" y1="8" x2="16" y2="12"/><line x1="52" y1="8" x2="48" y2="12"/></g><ellipse cx="32" cy="30" rx="22" ry="17" fill="var(--w-paper)" stroke="var(--w-ink)" stroke-width="2.5"/><path d="M16 30 q8-10 16 0 q8 10 16 0" fill="none" stroke="var(--w-ink)" stroke-width="2"/></svg></div></div>
+  </div>
+
+  <p>Of course they sound the same. Growth over months isn't a prompt. It's a system: who you are writing for, what they already believe, what they need next, what you will post every week, and how you know if it worked. Without that, AI just helps you produce more noise, faster.</p>
+  <p class="big">AI is leverage. <span class="r">Leverage on nothing is still nothing.</span></p>
+
+  <h2>So why bother?</h2>
+  <p>If everything can be automated, why learn anything?</p>
+  <p>Because the bottleneck moved. It used to be doing the work. Now it's knowing what the work should be.</p>
+
+  <div class="meme" role="figure" aria-label="Expectation versus reality of AI automation">
+    <div class="grid2">
+      <div class="panel">
+        <div class="ttl">What AI removed</div>
+        <div class="txt" style="text-align:left">✓ cutting clips<br>✓ syncing audio<br>✓ rendering captions<br>✓ typing the code</div>
+      </div>
+      <div class="panel">
+        <div class="ttl" style="color:var(--w-rec)">What it didn't</div>
+        <div class="txt" style="text-align:left">✗ knowing what good looks like<br>✗ knowing who it's for<br>✗ knowing when to stop<br>✗ taste</div>
+      </div>
+    </div>
+    <div class="credit">execution got cheap. judgment didn't.</div>
+  </div>
+
+  <p>Execution is getting close to free. Judgment isn't. The person who understands the domain well enough to write the system will get in one try what everyone else gets in ten. Over a year, that difference compounds into a different outcome entirely.</p>
+  <p>So the practical lesson is almost boring. Before you prompt, write the system down.</p>
+
+  <section class="check" aria-labelledby="ch">
+    <h3 id="ch">Do you have a system yet?</h3>
+    <label class="opt"><input type="checkbox" id="c1"><span>I can describe what "good" looks like, specifically enough that a stranger could judge it.</span></label>
+    <label class="opt"><input type="checkbox" id="c2"><span>I know the constraints: length, format, budget, platform, deadline.</span></label>
+    <label class="opt"><input type="checkbox" id="c3"><span>I can list the steps between blank page and finished thing.</span></label>
+    <label class="opt"><input type="checkbox" id="c4"><span>I know exactly who it's for and what they already believe.</span></label>
+    <label class="opt"><input type="checkbox" id="c5"><span>I have studied at least ten examples that worked and can say why.</span></label>
+    <div class="verdict" id="verdict" aria-live="polite">0 of 5. You have a wish. Expect version 6.</div>
+  </section>
+
+  <p>If you can't answer those, that's your real task, and AI can help you learn it faster than ever. Study ten reels that worked. Ask why. Turn the answers into rules.</p>
+  <p>Then automate.</p>
+  <p class="end">Ford didn't start with the assembly line. <span style="color:var(--w-rec)">He started with the car.</span></p>
+
+  <div class="ea-end"><p class="tc">END OF REEL · 00:04:00:00 · Every illustration and meme here was drawn for this article.</p></div>
+</div>
+
+</article></main><dialog id="copy-dialog"><p>Select and copy this plain text.</p><textarea aria-label="Copy-ready article text"></textarea><p><button id="close">Close</button></p></dialog><script id="copy-text" type="application/json">"By Saurabh Kumar \u00b7 @drummatick (https://x.com/drummatick)\n\nA note on reels, assembly lines, and the thing AI cannot do for you.\n\nLast week I tried to edit an Instagram reel with AI.\n\nI am a software engineer. I have shipped products. I assumed this would take twenty minutes.\n\nIt took most of an evening.\n\nVersion 1 came back and it was fine. Not good. Fine. So I asked for faster cuts. Version 2 had faster cuts and worse text. Version 3 fixed the text and lost the rhythm. Somewhere around version 6 I realized I wasn't editing a video anymore. I was negotiating with one.\n\nThe AI wasn't the problem. It did exactly what I asked. The problem was that I didn't know what to ask.\n\nWe have been automating for 200 years\n\nNone of this is new. In 1801 the Jacquard loom automated weaving patterns with punch cards. In 1913 Ford's moving assembly line cut the time to build a Model T from about twelve hours to around ninety minutes.\n\nBut notice what Ford actually automated. Not \"build a car.\" He automated a car that had already been designed, broken into steps, and specified down to the bolt. The line was fast because the system was clear.\n\nAutomation has always worked this way. It multiplies a system. It does not invent one.\n\nAI feels different because you can type a wish in plain English and get something back. That makes it easy to forget the old rule still applies.\n\nGive it a system and it multiplies the system. Give it a wish and it multiplies the variance.\n\nWhy it works when I write code\n\nWhen I build software with AI, I rarely get the evening I had with that reel.\n\nWhy? Because I already know what the finished thing looks like. I know the constraints. I know the steps to get there. I know what's in scope and what isn't. When the AI produces something, I can tell in seconds whether it's right, and if it isn't, I can say exactly why.\n\nThat's a system. It lives in my head, built over years of doing the work badly and then less badly.\n\nWith video I had none of that. I knew I wanted it \"edited.\" I wanted \"some infographics\" and \"good animation.\" I wanted it to go viral.\n\nBut what is a viral video? How long is it? What happens in the first two seconds? Where do the cuts land? What does the viewer feel at second 8?\n\nI didn't know. So I asked the AI to decide, and it decided differently every time. Each version was a guess. My feedback was a guess too, because I was reacting to what I saw rather than steering toward something I understood.\n\nThat's the loop. Vague intent, random output, vague feedback, repeat. Each round costs a context switch and a little more patience.\n\nVariance is the symptom\n\nThe frustration of working with AI in an unfamiliar domain isn't a tooling problem. It's a knowledge problem wearing a tooling costume.\n\n\"Make me a viral video\" is not a spec. It's a hope.\n\nAn expert editor would turn that hope into decisions before touching anything. A hook in the first second. Under 30 seconds. One idea per cut. Captions large enough to read on mute. A reference reel to match. Those decisions are the system, and once they exist, the AI can execute them almost perfectly on the first try.\n\nThe gap between version 1 and version 6 is exactly the size of the system you don't have.\n\nIt's the same for growing an audience\n\nThis goes well beyond editing. People ask AI to grow their Twitter or Instagram and get a pile of posts that sound like everyone else's.\n\nOf course they sound the same. Growth over months isn't a prompt. It's a system: who you are writing for, what they already believe, what they need next, what you will post every week, and how you know if it worked. Without that, AI just helps you produce more noise, faster.\n\nAI is leverage. Leverage on nothing is still nothing.\n\nSo why bother?\n\nIf everything can be automated, why learn anything?\n\nBecause the bottleneck moved. It used to be doing the work. Now it's knowing what the work should be.\n\nExecution is getting close to free. Judgment isn't. The person who understands the domain well enough to write the system will get in one try what everyone else gets in ten. Over a year, that difference compounds into a different outcome entirely.\n\nSo the practical lesson is almost boring. Before you prompt, write the system down.\n\nDo you have a system yet?\n\n\u2022 I can describe what \"good\" looks like, specifically enough that a stranger could judge it.\n\u2022 I know the constraints: length, format, budget, platform, deadline.\n\u2022 I can list the steps between blank page and finished thing.\n\u2022 I know exactly who it's for and what they already believe.\n\u2022 I have studied at least ten examples that worked and can say why.\n\nIf you can't answer those, that's your real task, and AI can help you learn it faster than ever. Study ten reels that worked. Ask why. Turn the answers into rules.\n\nThen automate.\n\nFord didn't start with the assembly line. He started with the car.\n"</script><script>
+(function(){
+  // ---------- Variance machine ----------
+  const rules=[...document.querySelectorAll('#rules input')];
+  const outs=document.getElementById('outs');
+  const hooks=['slow fade from black','3s logo intro','"hey guys so..."','random stock sunset','HOOK: bold claim','mid sentence start'];
+  const lens=[12,24,47,63,88,140];
+  const pals=[['#e76f51','#264653'],['#8ab17d','#2a9d8f'],['#f4a261','#6d597a'],['#e9c46a','#3d405b'],['#9b5de5','#00bbf9'],['#ef476f','#118ab2']];
+  const caps=['tiny caption','no caption','caption off screen','BIG CAPTION','comic sans','caption covers face'];
+  let runs=0;
+  function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+  function gen(){
+    runs++;
+    const on=new Set(rules.filter(r=>r.checked).map(r=>r.value));
+    const k=on.size; // 0..5
+    const pRule=0.2+0.16*k; // probability each output conforms
+    outs.innerHTML='';let usable=0;
+    const refPal=['#e85d3a','#1d2b44'];
+    for(let i=0;i<6;i++){
+      const hook=on.has('hook')&&Math.random()<pRule+0.15?'HOOK: bold claim':rnd(hooks);
+      const len=on.has('len')&&Math.random()<pRule+0.15?18+Math.floor(Math.random()*10):rnd(lens);
+      const cap=on.has('cap')&&Math.random()<pRule+0.15?'BIG CAPTION':rnd(caps);
+      const pal=on.has('ref')&&Math.random()<pRule+0.2?refPal:rnd(pals);
+      const cuts=on.has('one')&&Math.random()<pRule+0.15?Math.max(3,Math.round(len/5)):1+Math.floor(Math.random()*20);
+      const ok=hook.startsWith('HOOK')&&len<30&&cap==='BIG CAPTION'&&(k>=4||Math.random()<.5);
+      if(ok)usable++;
+      const d=document.createElement('div');d.className='out '+(ok?'pass':'fail');
+      d.innerHTML=`<div class="frame" style="background:linear-gradient(160deg,${pal[0]},${pal[1]})">
+        <div style="position:absolute;top:8px;left:8px;right:8px;color:#fff;font-size:.62rem;text-shadow:0 1px 2px #0008">${hook}</div>
+        <div style="color:#fff;font-weight:600;text-align:center;text-shadow:0 1px 3px #000a;font-size:${cap==='BIG CAPTION'?'.95rem':'.55rem'}">${cap}</div></div>
+        <div class="meta"><span>v${i+1} · ${len}s · ${cuts} cuts</span><b>${ok?'usable':'redo'}</b></div>`;
+      outs.appendChild(d);
+    }
+    document.getElementById('sUse').textContent=usable+'/6';
+    const v=Math.max(8,100-k*19);
+    const bar=document.getElementById('sVar');bar.style.width=v+'%';bar.style.background=v<40?'var(--w-ok)':'var(--w-rec)';
+    document.getElementById('sTime').textContent=usable>=4?'20m':usable>=2?'1h':'3h';
+    document.getElementById('promptText').textContent=k?('make me a reel. rules: '+[...on].map(x=>({hook:'hook<1s',len:'<30s',cap:'big captions',one:'1 idea/cut',ref:'match ref'})[x]).join(', ')):'make me a viral reel';
+    document.getElementById('genNote').textContent=k===0?'No rules. Pure vibes.':k<3?'Some rules. Fewer surprises.':'This is a system now.';
+  }
+  document.getElementById('gen').addEventListener('click',gen);
+  rules.forEach(r=>r.addEventListener('change',()=>{ /* update prompt preview */
+    const on=rules.filter(x=>x.checked).length;
+    document.getElementById('genNote').textContent=on?on+' rule'+(on>1?'s':'')+' set. Generate again.':'';
+  }));
+  gen();
+
+  // ---------- Ford line ----------
+  const svgNS='http://www.w3.org/2000/svg';
+  const st=document.getElementById('stations'),cars=document.getElementById('cars');
+  const names=['chassis','engine','wheels','body','paint'];
+  names.forEach((n,i)=>{const x=70+i*125;
+    const r=document.createElementNS(svgNS,'rect');r.setAttribute('x',x-30);r.setAttribute('y',20);r.setAttribute('width',60);r.setAttribute('height',24);r.setAttribute('rx',3);r.setAttribute('fill','var(--w-bg)');r.setAttribute('stroke','var(--w-line)');st.appendChild(r);
+    const t=document.createElementNS(svgNS,'text');t.setAttribute('x',x);t.setAttribute('y',36);t.textContent=n;st.appendChild(t);
+    const l=document.createElementNS(svgNS,'line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',44);l.setAttribute('y2',70);l.setAttribute('stroke','var(--w-line)');l.setAttribute('stroke-dasharray','3 3');st.appendChild(l);
+  });
+  function car(x,spec){
+    const g=document.createElementNS(svgNS,'g');
+    const w=spec?70:40+Math.random()*60, h=spec?22:12+Math.random()*26;
+    const col=spec?'var(--w-ink)':['var(--w-track1)','var(--w-track2)','var(--w-track3)','var(--w-rec)','var(--w-tape)'][Math.floor(Math.random()*5)];
+    const wheels=spec?2:Math.floor(Math.random()*4)+1;
+    g.innerHTML=`<rect x="${-w/2}" y="${-h}" width="${w}" height="${h}" rx="4" fill="${col}"/>`+
+      (spec?`<rect x="-18" y="${-h-12}" width="36" height="13" rx="3" fill="${col}"/>`:(Math.random()<.5?`<rect x="${-w/4}" y="${-h-10}" width="${w/2}" height="11" rx="5" fill="${col}"/>`:''))+
+      Array.from({length:wheels},(_,i)=>`<circle cx="${-w/2+ (w/(wheels+1))*(i+1)}" cy="0" r="${spec?7:4+Math.random()*6}" fill="var(--w-paper)" stroke="var(--w-ink)" stroke-width="3"/>`).join('');
+    g.setAttribute('transform',`translate(${x},112)`);
+    return g;
+  }
+  let fordTimer=null;
+  function run(spec){
+    cars.innerHTML='';clearInterval(fordTimer);
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const list=[];
+    for(let i=0;i<5;i++){const c=car(-60-i*130,spec);cars.appendChild(c);list.push({el:c,x:-60-i*130});}
+    const finish=()=>{document.getElementById('fordNote').textContent=spec?'5 of 5 identical. That is what a spec buys.':'5 cars, 5 different machines. Which one did you want?';};
+    if(reduce){list.forEach((c,i)=>{c.x=70+i*125;c.el.setAttribute('transform',`translate(${c.x},112)`)});finish();return}
+    document.getElementById('fordNote').textContent='Running...';
+    fordTimer=setInterval(()=>{let done=true;
+      list.forEach((c,i)=>{const target=570-i*125;if(c.x<target){c.x=Math.min(target,c.x+9);done=false}c.el.setAttribute('transform',`translate(${c.x},112)`)});
+      if(done){clearInterval(fordTimer);finish()}},30);
+  }
+  document.getElementById('fordSpec').addEventListener('click',()=>run(true));
+  document.getElementById('fordWish').addEventListener('click',()=>run(false));
+  // resting state: a spec run already in place
+  (function(){for(let i=0;i<5;i++){cars.appendChild(car(570-i*125,true))}})();
+
+  // ---------- Checklist ----------
+  const boxes=[...document.querySelectorAll('.check input')];
+  const msgs=['You have a wish. Expect version 6.','You have a hunch. Expect version 4.','Half a system. Version 3, maybe.','Almost there. One more rule and AI does the rest.','Close. Write the last piece down.','You have a system. Now automate it.'];
+  boxes.forEach(b=>b.addEventListener('change',()=>{
+    const n=boxes.filter(x=>x.checked).length;
+    const v=document.getElementById('verdict');
+    v.textContent=n+' of 5. '+msgs[n];v.classList.toggle('good',n>=4);
+  }));
+})();
+
+const copyText=JSON.parse(document.getElementById('copy-text').textContent);
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(copyText);document.getElementById('status').textContent='Article copied as plain text.';}catch(error){const dialog=document.getElementById('copy-dialog');const area=dialog.querySelector('textarea');area.value=copyText;dialog.showModal();area.focus();area.select();}};
+document.getElementById('close').onclick=()=>document.getElementById('copy-dialog').close();
+</script></body></html>
